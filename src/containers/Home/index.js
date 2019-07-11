@@ -1,8 +1,16 @@
 import React, {Component} from 'react'
 import {bindActionCreators} from 'redux'
-import {Compare, ProductList} from '../../components'
+import {Compare, ProductList, SocialButton} from '../../components'
 import * as productActions from '../../actions/product'
 import {connect} from 'react-redux'
+
+const handleSocialLogin = (user) => {
+  console.log(user)
+}
+
+const handleSocialLoginFailure = (err) => {
+  console.error(err)
+}
 
 class Home extends Component {
   componentWillMount() {
@@ -15,6 +23,14 @@ class Home extends Component {
 
     return (
       <div className="home mt-5">
+        <SocialButton
+          provider='google'
+          appId='785939951625-5avvagsb2kn5amaj9i6vjnkjektn3q0b.apps.googleusercontent.com'
+          onLoginSuccess={handleSocialLogin}
+          onLoginFailure={handleSocialLoginFailure}
+        >
+          Login with Facebook
+        </SocialButton>
         <div className="row">
           <div className="col-12">
             <h2 className="mb-3">Compare Products</h2>
